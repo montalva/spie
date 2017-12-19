@@ -42,13 +42,15 @@ public class Main implements ActionListener{
                     
         }else if (this.tipo_usuario.equals("profesional")){
             System.out.println("profesional");
-            main.btnAgregarAlumno.setEnabled(false);
-            main.btnAgregarProfesional.setEnabled(false);
+            main.btnAgregarAlumno.setVisible(false);
+            main.btnAgregarProfesional.setVisible(false);
+            main.mnuConf.setEnabled(false);
         }else if (this.tipo_usuario.equals("director")){
             System.out.println("director");
-            main.btnAgregarAlumno.setEnabled(false);
-            main.btnAgregarProfesional.setEnabled(false);
-            main.btnAgregarRegistro.setEnabled(false);
+            main.btnAgregarAlumno.setVisible(false);
+            main.btnAgregarProfesional.setVisible(false);
+            main.btnAgregarRegistro.setVisible(false);
+            main.mnuConf.setVisible(false);
         }
         
     }
