@@ -29,7 +29,7 @@ public class BDMLogin extends BD{
            String usuario = rs.getString("rut");
            String password = rs.getString("contraseña");
            st.close();
-           if (user.equals(usuario) && pass==password){
+           if (user.equals(usuario) && password.equals(String.valueOf(pass))){
                return true;
            }else{
                return false;
