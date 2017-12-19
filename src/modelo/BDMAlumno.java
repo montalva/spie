@@ -14,28 +14,7 @@ public class BDMAlumno extends BD {
         
     }
 
-    public String[] bGnero() {
-        String[] genero; // = new String[3];
-        int i = 1;
-        try {
-            PreparedStatement st = con.prepareStatement("select * from genero");
-            ResultSet rs = st.executeQuery();
-            rs.last();
-            int t = rs.getRow();
-            rs.beforeFirst();
-            genero = new String[t+1];            
-            genero[0] = "Seleccione genero";
-            while (rs.next()) {
-                genero[i++] = rs.getString("genero");
-            }
-            st.close();
-            return genero;
 
-        } catch (SQLException ex) {
-            return null;
-        }
-
-    }
 
     public String[] bCurso() {
         String[] curso;
@@ -60,7 +39,83 @@ public class BDMAlumno extends BD {
             return null;
         }
     }
-
+  public String[] bRegion() {
+        String[] region;
+        int i = 1;
+        try {
+            PreparedStatement statement= con.prepareStatement("select * from region");
+            ResultSet resultSet= statement.executeQuery();
+            resultSet.last();
+            int t = resultSet.getRow();
+            resultSet.beforeFirst();
+            region = new String[t + 1];
+            region[0] = "Seleccione región";
+            while (resultSet.next()) {
+                region[i++] = resultSet.getString("region_nombre");
+                
+            }
+            statement.close();
+            return region;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        } catch (NullPointerException ne) {
+            return null;
+        }
+    }
+  public String[] bComuna(String region) {
+        String[] comuna;
+        int i = 1;
+            
+        try {
+            PreparedStatement statement= con.prepareStatement("Select comuna.comuna_nombre from comuna \n" +
+"INNER JOIN provincia ON provincia.provincia_id=comuna.provincia_id \n" +
+"inner join region on region.region_id=provincia.region_id\n" +
+"where region_nombre=?");
+            statement.setString(1, region);
+           
+            ResultSet resultSet= statement.executeQuery();
+            resultSet.last();
+            int t = resultSet.getRow();
+            resultSet.beforeFirst();
+            comuna = new String[t + 1];
+            comuna[0] = "Seleccione comuna";
+            while (resultSet.next()) {
+                comuna[i++] = resultSet.getString("comuna_nombre");
+            }
+            statement.close();
+            return comuna;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        } catch (NullPointerException ne) {
+            return null;
+        }
+    }
+    
+    public String[] bDiagnostico() {
+        String[] diagnostico;
+        int i = 1;
+        try {
+            PreparedStatement statement= con.prepareStatement("select * from diagnostico");
+            ResultSet resultSet= statement.executeQuery();
+            resultSet.last();
+            int t = resultSet.getRow();
+            resultSet.beforeFirst();
+            diagnostico = new String[t + 1];
+            diagnostico[0] = "Seleccione diagnóstico";
+            while (resultSet.next()) {
+                diagnostico[i++] = resultSet.getString("diagnostico");
+            }
+            statement.close();
+            return diagnostico;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        } catch (NullPointerException ne) {
+            return null;
+        }
+    }
     public int agregar(Alumno u) {
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO alumno (rut,nombre,apellido_paterno,"
@@ -76,7 +131,7 @@ public class BDMAlumno extends BD {
             st.setString(4, u.getApellido_materno());
             st.setString(5, u.getFecha_nacimiento());
             st.setInt(6, u.getCurso());
-            st.setInt(7, u.getGenero());
+            st.setString(7, u.getGenero());
             st.setString(8, u.getDireccion());
             st.setString(9, u.getComuna());
             st.setString(10, u.getNombre_apoderado());
@@ -101,7 +156,6 @@ public class BDMAlumno extends BD {
         try {
             PreparedStatement st = con.prepareStatement("SELECT *\n"
                     + "FROM alumno\n"
-                    + "JOIN genero ON alumno.id_genero = genero.id_genero\n"
                     + "JOIN curso ON alumno.id_curso = curso.id_curso WHERE rut=?");
 
             st.setString(1, rut);
@@ -114,7 +168,7 @@ public class BDMAlumno extends BD {
                 a.setApellido_paterno(rs.getString("apellido_paterno"));
                 a.setApellido_materno(rs.getString("apellido_materno"));
                 a.setFecha_nacimiento(rs.getString("fecha_nacto"));
-                a.setGenero(rs.getInt("id_genero"));
+                a.setGenero(rs.getString("genero"));
                 a.setCurso(rs.getInt("curso"));
                 a.setDireccion(rs.getString("direccion"));
                 a.setComuna(rs.getString("comuna"));
@@ -182,7 +236,7 @@ public class BDMAlumno extends BD {
 
         try {
             PreparedStatement st = con.prepareStatement("UPDATE alumno SET rut=?,nombre=?,apellido_paterno=?,"
-                    + "apellido_materno=?, fecha_nacto=?,id_curso=?,id_genero=?,direccion=?,comuna=?,nombre_apoderado=?,"
+                    + "apellido_materno=?, fecha_nacto=?,id_curso=?,genero=?,direccion=?,comuna=?,nombre_apoderado=?,"
                     + "apellido_apoderado=?,telefono_apoderado=?,diagnostico=? where id_alumno=?");
             if (!u.getRut().isEmpty()) {
                 st.setString(1, u.getRut());
@@ -194,7 +248,7 @@ public class BDMAlumno extends BD {
             st.setString(4, u.getApellido_materno());
             st.setString(5, u.getFecha_nacimiento());
             st.setInt(6, u.getCurso());
-            st.setInt(7, u.getGenero());
+            st.setString(7, u.getGenero());
             st.setString(8, u.getDireccion());
             st.setString(9, u.getComuna());
             st.setString(10, u.getNombre_apoderado());
@@ -215,43 +269,8 @@ public class BDMAlumno extends BD {
 
     }
 
-    public int buscarGenero(String genero) {
-
-        try {
-            PreparedStatement st = con.prepareStatement("SELECT id_genero FROM genero where genero=?");
-
-            st.setString(1, genero);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-
-                int id_genero = rs.getInt("id_genero");
-                return id_genero;
-
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error select " + ex.getMessage());
-        }
-        return -1;
-    }
-
-    public String buscarGenero(int id_genero) {
-
-        try {
-            PreparedStatement st = con.prepareStatement("SELECT genero FROM genero where id_genero=?");
-
-            st.setInt(1, id_genero);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-
-                String genero = rs.getString("genero");
-                return genero;
-
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error select " + ex.getMessage());
-        }
-        return null;
-    }
+   
+   
 
     public int buscarCurso(String curso) {
 

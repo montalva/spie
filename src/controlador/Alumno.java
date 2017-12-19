@@ -35,13 +35,14 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.setVisible(true);
         this.callWindow = callWindow;
         this.vista.txtBuscar.addKeyListener(this);
-        vista.btnBuscar.setEnabled(false);
+        this.vista.btnBuscar.setEnabled(false);
 
         modBDM = bdm;
         if (cargaForm()) {
             this.vista.cmbCurso.addActionListener(this);
+            this.vista.cmbRegion.addActionListener(this);
         } else {
-            JOptionPane.showMessageDialog(null, "Error genero y curso en BD",
+            JOptionPane.showMessageDialog(null, "Error curso en BD",
                     "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -49,18 +50,30 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
 
     public boolean cargaForm() {
 
-        String[] genero = modBDM.bGnero();
-        for (int i = 0; i < genero.length; i++) {
-            vista.cmbGenero.addItem(genero[i]);
-        }
-
+        
+        vista.cmbGenero.addItem("Seleccione Genero");
+        vista.cmbGenero.addItem("Femenino");
+        vista.cmbGenero.addItem("Masculino");
         String[] curso = modBDM.bCurso();
-        if (curso != null) {
+        String[] region = modBDM.bRegion();
+        String[] diagnostico = modBDM.bDiagnostico();
+        if (curso != null && region!=null && diagnostico!=null) {
             for (int i = 0; i < curso.length; i++) {
                 vista.cmbCurso.addItem(curso[i]);
             }
+            for (int i = 0; i < region.length; i++) {
+
+                vista.cmbRegion.addItem(region[i]);
+            }
+
+            for (int i = 0; i < diagnostico.length; i++) {
+
+                vista.cmbDiagnostico.addItem(diagnostico[i]);
+            }
             return true;
         }
+        
+       
         return false;
 
     }
@@ -74,17 +87,17 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 System.out.println(this.vista.txtRut.getText());
                 modelo.Alumno ml = new modelo.Alumno();
                 if (vista.cmbGenero.getSelectedIndex() > 0 && vista.cmbCurso.getSelectedIndex() > 0) {
-                    int id_genero = modBDM.buscarGenero(vista.cmbGenero.getSelectedItem().toString());
-                    if (id_genero > 0) {
-                        ml.setGenero(id_genero);
-                    }
+                    
+                    
+                    ml.setGenero(vista.cmbGenero.getSelectedItem().toString());
+                    
                     int id_curso = modBDM.buscarCurso(vista.cmbCurso.getSelectedItem().toString());
                     if (id_curso > 0) {
                         ml.setCurso(id_curso);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar un género y curso",
-                             "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+                            "Mensaje del sistema", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
                 ml.setRut(vista.txtRut.getText());
@@ -93,11 +106,10 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 ml.setApellido_materno(vista.txtApellidoMaterno.getText());
                 ml.setFecha_nacimiento(vista.txtFNacimiento.getText());
                 ml.setDireccion(vista.txtDireccion.getText());
-                ml.setComuna(vista.txtComuna.getText());
                 ml.setNombre_apoderado(vista.txtNombreApoderado.getText());
                 ml.setApellido_apoderado(vista.txtApellidoApoderado.getText());
                 ml.setTelefono_apoderado(vista.txtTelefonoApoderado.getText());
-                ml.setDiagnostico(vista.txtDiagnostico.getText());
+                
                 if (!isTexto()) {
                     JOptionPane.showMessageDialog(null, "NO se aceptan numeros en los campos" + " "
                             + vista.txtNombre.getText(), "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
@@ -116,17 +128,16 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 System.out.println("Modificar");
                 modelo.Alumno modAl = new modelo.Alumno();
                 if (vista.cmbGenero.getSelectedIndex() > 0 && vista.cmbCurso.getSelectedIndex() > 0) {
-                    int id_genero = modBDM.buscarGenero(vista.cmbGenero.getSelectedItem().toString());
-                    if (id_genero > 0) {
-                        modAl.setGenero(id_genero);
-                    }
+                    
+                    modAl.setGenero(vista.cmbGenero.getModel().getSelectedItem().toString());
+                    
                     int id_curso = modBDM.buscarCurso(vista.cmbCurso.getSelectedItem().toString());
                     if (id_curso > 0) {
                         modAl.setCurso(id_curso);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar un género y curso",
-                             "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+                            "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
                 modAl.setRut(vista.txtRut.getText());
@@ -135,11 +146,11 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 modAl.setApellido_materno(vista.txtApellidoMaterno.getText());
                 modAl.setFecha_nacimiento(vista.txtFNacimiento.getText());
                 modAl.setDireccion(vista.txtDireccion.getText());
-                modAl.setComuna(vista.txtComuna.getText());
+
                 modAl.setNombre_apoderado(vista.txtNombreApoderado.getText());
                 modAl.setApellido_apoderado(vista.txtApellidoApoderado.getText());
                 modAl.setTelefono_apoderado(vista.txtTelefonoApoderado.getText());
-                modAl.setDiagnostico(vista.txtDiagnostico.getText());
+
                 if (!isTexto()) {
                     JOptionPane.showMessageDialog(null, "NO se aceptan numeros en los campos" + " "
                             + vista.txtNombre.getText(), "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
@@ -168,7 +179,6 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 break;
             case "CMD_FIND":
                 System.out.println("Buscar");
-
                 String rut = vista.txtBuscar.getText();
                 modelo.Alumno mod = modBDM.buscar(rut);
                 if (mod != null) {
@@ -180,13 +190,9 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                     vista.txtApellidoPaterno.setText(mod.getApellido_paterno());
                     vista.txtApellidoMaterno.setText(mod.getApellido_materno());
                     vista.txtFNacimiento.setText(mod.getFecha_nacimiento());
-                    String genero = modBDM.buscarGenero(mod.getGenero());
-                    if (genero != null) {
-                        vista.cmbGenero.getModel().setSelectedItem(genero);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se encontró genero", "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    }
+                   
+                    vista.cmbGenero.getModel().setSelectedItem(mod.getGenero());
+                    this.vista.cmbCurso.removeActionListener(this);
                     String curso = modBDM.buscarCurso(mod.getCurso());
                     if (curso != null) {
                         vista.cmbCurso.getModel().setSelectedItem(curso);
@@ -194,12 +200,14 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                         JOptionPane.showMessageDialog(null, "No se encontró genero", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     }
+                     this.vista.cmbCurso.addActionListener(this);
+                    
                     vista.txtDireccion.setText(mod.getDireccion());
-                    vista.txtComuna.setText(mod.getComuna());
+
                     vista.txtNombreApoderado.setText(mod.getNombre_apoderado());
                     vista.txtApellidoApoderado.setText(mod.getApellido_apoderado());
                     vista.txtTelefonoApoderado.setText(mod.getTelefono_apoderado());
-                    vista.txtDiagnostico.setText(mod.getDiagnostico());
+
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -222,6 +230,16 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                     modeloTabla.addRow(fila);
                 }
                 break;
+            case "CMD_REGION":
+                System.out.println("region cb");
+                vista.cmbComuna.removeAllItems();
+               
+                String region = vista.cmbRegion.getSelectedItem().toString();
+                String [] comuna = modBDM.bComuna(region);
+                for (int i = 0; i < comuna.length; i++) {
+                    vista.cmbComuna.addItem(comuna[i]);
+                }
+                break;
         }
     }
 
@@ -237,11 +255,11 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.cmbCurso.setSelectedIndex(0);
         this.vista.cmbCurso.addActionListener(this);
         this.vista.txtDireccion.setText("");
-        this.vista.txtComuna.setText("");
+
         this.vista.txtNombreApoderado.setText("");
         this.vista.txtApellidoApoderado.setText("");
         this.vista.txtTelefonoApoderado.setText("");
-        this.vista.txtDiagnostico.setText("");
+
         DefaultTableModel tm = (DefaultTableModel) vista.tableListar.getModel();
         tm.setRowCount(0);
 
@@ -344,8 +362,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
     public boolean isTexto() {
         if (isNumeric(vista.txtNombre.getText()) || isNumeric(vista.txtApellidoPaterno.getText())
                 || isNumeric(vista.txtApellidoMaterno.getText()) || isNumeric(vista.txtNombreApoderado.getText())
-                || isNumeric(vista.txtApellidoApoderado.getText()) || isNumeric(vista.txtComuna.getText())
-                || isNumeric(vista.txtDiagnostico.getText())) {
+                || isNumeric(vista.txtApellidoApoderado.getText())) {
 
             return false;
         }

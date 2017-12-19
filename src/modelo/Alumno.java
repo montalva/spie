@@ -8,7 +8,7 @@ public class Alumno{
     private String apellido_materno;
     private String fecha_nacimiento;
     private int curso;
-    private int genero;
+    private String genero;
     private String direccion;
     private String comuna;
     private String nombre_apoderado;
@@ -24,7 +24,7 @@ public class Alumno{
         this.apellido_materno= null;
         this.fecha_nacimiento= null;
         this.curso= 0;
-        this.genero= 0;
+        this.genero= null;
         this.direccion= null;
         this.comuna= null;
         this.nombre_apoderado= null;
@@ -97,11 +97,11 @@ public class Alumno{
         this.curso = curso;
     }
 
-    public int getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(int genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 
