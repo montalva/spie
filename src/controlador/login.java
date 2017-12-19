@@ -16,19 +16,23 @@ import javax.swing.JOptionPane;
  *
  * @author usuario 2
  */
-public class login implements ActionListener{
-  vista.Login login;
-   modelo.BDMLogin bdmlogin;
+public class login implements ActionListener {
+
+    vista.Login login;
+    modelo.BDMLogin bdmlogin;
+    modelo.Hash Hash;
+
     public login(vista.Login vista) {
-        this.login=vista;
-        
+        this.login = vista;
+
         this.login.btnLogin.addActionListener(this);
         bdmlogin = new modelo.BDMLogin();
-         try {
+        try {
             modelo.BD.conectar();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //System.out.println(Hash.sha1("profesor"));
     }
     
     @Override

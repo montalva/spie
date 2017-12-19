@@ -14,32 +14,26 @@ import static modelo.BD.con;
  *
  * @author usuario 2
  */
-public class BDMLogin extends BD{
-    
-     public boolean bUsuario(String user ,char[] pass) {
-      
+public class BDMLogin extends BD {
+
+    modelo.Hash Hash;
+
+    public boolean bUsuario(String user, char[] pass) {
+
         try {
-            PreparedStatement st = con.prepareStatement("select * from profesional where rut=?");
+            PreparedStatement st = con.prepareStatement("select * from profesional where rut=? and password=?");
             st.setString(1, user);
+            String pa = String.valueOf(pass);
+            String h = Hash.sha1(pa);
+            st.setString(2, Hash.sha1(String.valueOf(pass)));
             ResultSet rs = st.executeQuery();
-            
-            
-           rs.next();
-           
-           String usuario = rs.getString("rut");
-           String password = rs.getString("contraseña");
-           st.close();
-           if (user.equals(usuario) && password.equals(String.valueOf(pass))){
-               return true;
-           }else{
-               return false;
-           }
-           
-            
+
+            return rs.next();
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
-        }catch(NullPointerException ne){
+        } catch (NullPointerException ne) {
             return false;
         }
     }
