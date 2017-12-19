@@ -44,8 +44,9 @@ public class Login implements ActionListener {
                 String tipo_usuario=bdmlogin.bUsuario(login.txtUsuario.getText(), login.txtPassword.getPassword());
                 if (tipo_usuario!=null) {
                     vista.FrmMain v0 = new vista.FrmMain();
-                    controlador.Main c0 = new controlador.Main(v0,tipo_usuario);
-                    v0.setVisible(true);
+                    controlador.Main c0 = new controlador.Main(v0,tipo_usuario,login);
+                    this.login.txtPassword.setText("");
+                    this.login.txtUsuario.setText("");
                     this.login.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró usuario", "Error", JOptionPane.ERROR_MESSAGE);
