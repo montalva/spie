@@ -14,7 +14,7 @@ public class AppEscuela {
         
 
         vista.Login l = new vista.Login();
-        controlador.login cl = new controlador.login(l);
+        controlador.Login cl = new controlador.Login(l);
         l.setVisible(true);
     }
     

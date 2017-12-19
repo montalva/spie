@@ -14,10 +14,11 @@ public class Main implements ActionListener{
     modelo.BDMAlumno bdm;
     modelo.RegistroDataBase bdr;
     modelo.BDMBuscarRegistro mbr;
+    String tipo_usuario;
     
-    public Main(vista.FrmMain vista) {
+    public Main(vista.FrmMain vista, String tipo_usuario) {
         this.main = vista;
-        
+        this.tipo_usuario = tipo_usuario;
         main.mnuAcerca.addActionListener(this);
         main.mnuSalir.addActionListener(this);
         main.btnAgregarAlumno.addActionListener(this);
@@ -36,7 +37,20 @@ public class Main implements ActionListener{
         bdm = new modelo.BDMAlumno();
         bdr = new modelo.RegistroDataBase();
         mbr = new modelo.BDMBuscarRegistro();
-       
+        if (this.tipo_usuario.equals("administrador")){
+            System.out.println("administrador");
+                    
+        }else if (this.tipo_usuario.equals("profesional")){
+            System.out.println("profesional");
+            main.btnAgregarAlumno.setEnabled(false);
+            main.btnAgregarProfesional.setEnabled(false);
+        }else if (this.tipo_usuario.equals("director")){
+            System.out.println("director");
+            main.btnAgregarAlumno.setEnabled(false);
+            main.btnAgregarProfesional.setEnabled(false);
+            main.btnAgregarRegistro.setEnabled(false);
+        }
+        
     }
 
     @Override

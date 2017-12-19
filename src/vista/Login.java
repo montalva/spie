@@ -32,8 +32,12 @@ public class Login extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jmnuconf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(300, 100));
 
         btnLogin.setText("Entrar");
         btnLogin.setActionCommand("CMD_ENTER");
@@ -41,6 +45,21 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("RUT");
 
         jLabel2.setText("CONTRASEÑA");
+
+        jMenu1.setText("Archivo");
+
+        jmnuconf.setText("Configuracion");
+        jmnuconf.setActionCommand("CMD_CONF");
+        jmnuconf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuconfActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmnuconf);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,11 +96,15 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmnuconfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuconfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmnuconfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +145,9 @@ public class Login extends javax.swing.JFrame {
     public javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenuItem jmnuconf;
     public javax.swing.JPasswordField txtPassword;
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
