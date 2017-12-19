@@ -32,15 +32,11 @@ public class Main implements ActionListener{
         
         //main.mnuBReg.addActionListener(this);
 
-        bdp = new modelo.BDProfesional();
+       // bdp = new modelo.BDProfesional();
         bdm = new modelo.BDMAlumno();
         bdr = new modelo.RegistroDataBase();
         mbr = new modelo.BDMBuscarRegistro();
-        try {
-            modelo.BD.conectar();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     @Override

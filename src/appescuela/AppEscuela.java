@@ -12,9 +12,10 @@ public class AppEscuela {
 //        vista.frmProfesional vista1 = new vista.frmProfesional();
 //        controlador.Profesional controlador1 = new controlador.Profesional(vista1);
         
-        vista.FrmMain v0 = new vista.FrmMain();
-        controlador.Main c0 = new controlador.Main(v0);
-        v0.setVisible(true);
+
+        vista.Login l = new vista.Login();
+        controlador.login cl = new controlador.login(l);
+        l.setVisible(true);
     }
     
 }
