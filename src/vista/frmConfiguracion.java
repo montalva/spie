@@ -40,6 +40,8 @@ public class frmConfiguracion extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Configuración");
+        setLocation(new java.awt.Point(500, 200));
 
         jLabel1.setText("Dirección IP");
 

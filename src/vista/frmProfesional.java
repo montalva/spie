@@ -48,6 +48,8 @@ public class frmProfesional extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Agregar Profesional");
+        setLocation(new java.awt.Point(500, 200));
 
         jLabel1.setText("Profesionales");
 

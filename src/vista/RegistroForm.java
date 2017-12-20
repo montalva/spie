@@ -56,6 +56,7 @@ public class RegistroForm extends javax.swing.JFrame {
         txtApellidoAlumno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Agregar Registro");
 
         rutAlumno.setText("Rut Alumno");
 
@@ -169,7 +170,7 @@ public class RegistroForm extends javax.swing.JFrame {
                             .addComponent(txtActividad)
                             .addComponent(txtObjetivo)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,13 +217,13 @@ public class RegistroForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(modificarButton)
                     .addComponent(eliminarButton)
                     .addComponent(limpiarButton))
-                .addGap(100, 100, 100))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();

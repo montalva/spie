@@ -31,6 +31,10 @@ public class FrmMain extends javax.swing.JFrame {
         btnAgregarProfesional = new javax.swing.JButton();
         btnAgregarRegistro = new javax.swing.JButton();
         btnBuscarRegistro = new javax.swing.JButton();
+        btnVerAlumno = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblCuenta = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuConf = new javax.swing.JMenuItem();
@@ -38,7 +42,8 @@ public class FrmMain extends javax.swing.JFrame {
         mnuSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setLocation(new java.awt.Point(300, 100));
+        setTitle("SPIE");
+        setLocation(new java.awt.Point(500, 200));
 
         btnAgregarAlumno.setText("Agregar Alumno");
         btnAgregarAlumno.setActionCommand("CMD_ALUM");
@@ -51,6 +56,13 @@ public class FrmMain extends javax.swing.JFrame {
 
         btnBuscarRegistro.setText("Buscar Registro");
         btnBuscarRegistro.setActionCommand("CMD_BREG");
+
+        btnVerAlumno.setText("Ver Alumnos");
+        btnVerAlumno.setActionCommand("CMD_VERALUMNO");
+
+        jLabel1.setText("Tipo de Cuenta");
+
+        lblCuenta.setText("cuenta");
 
         jMenu1.setText("Archivo");
 
@@ -78,25 +90,40 @@ public class FrmMain extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAgregarRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAgregarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAgregarProfesional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBuscarRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCuenta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnAgregarProfesional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(lblCuenta))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarAlumno)
                     .addComponent(btnAgregarProfesional))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
+                .addComponent(btnVerAlumno)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarRegistro)
                     .addComponent(btnBuscarRegistro))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,8 +169,12 @@ public class FrmMain extends javax.swing.JFrame {
     public javax.swing.JButton btnAgregarProfesional;
     public javax.swing.JButton btnAgregarRegistro;
     public javax.swing.JButton btnBuscarRegistro;
+    public javax.swing.JButton btnVerAlumno;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JLabel lblCuenta;
     public javax.swing.JMenuItem mnuAcerca;
     public javax.swing.JMenuItem mnuConf;
     public javax.swing.JMenuItem mnuSalir;

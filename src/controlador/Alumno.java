@@ -31,7 +31,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
-        this.vista.tableListar.addMouseListener(this);
+        
         this.vista.addWindowListener(this);
         this.vista.setVisible(true);
         this.callWindow = callWindow;
@@ -182,24 +182,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                  vista.BuscarAlumno vba= new vista.BuscarAlumno();
                 controlador.BuscarAlumno cba = new controlador.BuscarAlumno(vba,modBDM, vista);
                 break;
-            case "CMD_LISTAR":
-                System.out.println("CMD_LISTAR");
-                DefaultTableModel modeloTabla = (DefaultTableModel) vista.tableListar.getModel();
-                Object[] fila = new Object[4];
-                //  ArrayList<modelo.Alumno> listAlumno;
-                String curso = vista.cmbCurso.getSelectedItem().toString();
-                int id_curso = modBDM.buscarCurso(curso);
-                Iterator<modelo.Alumno> itr = modBDM.buscarAlumnoCurso(id_curso).iterator();
-                modeloTabla.setRowCount(0);
-                while (itr.hasNext()) {
-                    modelo.Alumno alumno = itr.next();
-                    fila[0] = alumno.getRut();
-                    fila[1] = alumno.getNombre();
-                    fila[2] = alumno.getApellido_paterno();
-                    fila[3] = alumno.getDireccion();
-                    modeloTabla.addRow(fila);
-                }
-                break;
+           
             case "CMD_REGION":
                 System.out.println("region cb");
                 vista.cmbComuna.removeAllItems();
@@ -230,8 +213,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.txtApellidoApoderado.setText("");
         this.vista.txtTelefonoApoderado.setText("");
 
-        DefaultTableModel tm = (DefaultTableModel) vista.tableListar.getModel();
-        tm.setRowCount(0);
+      
 
     }
 
@@ -285,14 +267,14 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int row = vista.tableListar.getSelectedRow();
-        System.out.println(vista.tableListar.getModel().getValueAt(row, 0) + e.paramString());
-        String rut = (String) vista.tableListar.getModel().getValueAt(row, 0);
-        String nombre = (String) vista.tableListar.getModel().getValueAt(row, 1);
-        String apellido_paterno = (String) vista.tableListar.getModel().getValueAt(row, 2);
-        vista.txtRut.setText(rut);
-        vista.txtNombre.setText(nombre);
-        vista.txtApellidoPaterno.setText(apellido_paterno);
+//        int row = vista.tableListar.getSelectedRow();
+//        System.out.println(vista.tableListar.getModel().getValueAt(row, 0) + e.paramString());
+//        String rut = (String) vista.tableListar.getModel().getValueAt(row, 0);
+//        String nombre = (String) vista.tableListar.getModel().getValueAt(row, 1);
+//        String apellido_paterno = (String) vista.tableListar.getModel().getValueAt(row, 2);
+//        vista.txtRut.setText(rut);
+//        vista.txtNombre.setText(nombre);
+//        vista.txtApellidoPaterno.setText(apellido_paterno);
     }
 
     @Override

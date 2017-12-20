@@ -7,6 +7,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author monta
  */
-public class BuscarAlumno implements ActionListener{
+public class BuscarAlumno implements ActionListener, WindowListener{
     vista.BuscarAlumno buscaAlumno;
     
     JFrame callWindow;
@@ -26,6 +28,7 @@ public class BuscarAlumno implements ActionListener{
         this.callWindow = callWindow;
         this.modBDM=modBDM;
         buscaAlumno.setVisible(true);
+        buscaAlumno.addWindowListener(this);
         String[] curso = modBDM.bCurso();
          if (curso != null ) {
             for (int i = 0; i < curso.length; i++) {
@@ -101,6 +104,41 @@ public class BuscarAlumno implements ActionListener{
 //                }
              
     }            
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+       
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        callWindow.setEnabled(true);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+       
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        
     }
     
 }

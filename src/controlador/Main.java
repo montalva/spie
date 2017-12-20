@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.table.DefaultTableModel;
 
 public class Main implements ActionListener, WindowListener{
     vista.FrmMain main;
@@ -34,7 +36,7 @@ JFrame callWindow;
         main.btnAgregarProfesional.addActionListener(this);
         this.main.setVisible(true);
         main.btnAgregarRegistro.addActionListener(this);
-        
+        main.btnVerAlumno.addActionListener(this);
         main.mnuConf.addActionListener(this);
         main.btnBuscarRegistro.addActionListener(this);
         
@@ -43,16 +45,19 @@ JFrame callWindow;
         mbr = new modelo.BDMBuscarRegistro();
         if (this.tipo_usuario.equals("administrador")){
             System.out.println("administrador");
+            this.main.lblCuenta.setText("ADMINISTRACIÓN");
                     
         }else if (this.tipo_usuario.equals("profesional")){
             System.out.println("profesional");
-            main.btnAgregarAlumno.setEnabled(false);
-            main.btnAgregarProfesional.setEnabled(false);
+            main.btnAgregarAlumno.setVisible(false);
+            main.btnAgregarProfesional.setVisible(false);
+            this.main.lblCuenta.setText("PROFESIONAL");
         }else if (this.tipo_usuario.equals("director")){
             System.out.println("director");
-            main.btnAgregarAlumno.setEnabled(false);
-            main.btnAgregarProfesional.setEnabled(false);
-            main.btnAgregarRegistro.setEnabled(false);
+            main.btnAgregarAlumno.setVisible(false);
+            main.btnAgregarProfesional.setVisible(false);
+            main.btnAgregarRegistro.setVisible(false);
+            this.main.lblCuenta.setText("DIRECTOR");
         }
         
     }
@@ -130,14 +135,24 @@ JFrame callWindow;
                 break;
             case "CMD_BREG":
                 vista.BuscarRegistro vbr = new vista.BuscarRegistro();
-        
-            try {
-                controlador.BuscarRegistro cbr = new controlador.BuscarRegistro(vbr, mbr,bdm, main);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+
+                try {
+                    controlador.BuscarRegistro cbr = new controlador.BuscarRegistro(vbr, mbr, bdm, main);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 main.setEnabled(false);
+                break;
+            case "CMD_VERALUMNO":
+
+                vista.BuscarAlumno vba = new vista.BuscarAlumno();
+
+                controlador.BuscarAlumno cba = new controlador.BuscarAlumno(vba, bdm, main);
+
+                main.setEnabled(false);
+
+                break;
         }
     }
 

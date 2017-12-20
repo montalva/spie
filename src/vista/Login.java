@@ -37,7 +37,8 @@ public class Login extends javax.swing.JFrame {
         jmnuconf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(300, 100));
+        setTitle("Login");
+        setLocation(new java.awt.Point(500, 200));
 
         btnLogin.setText("Entrar");
         btnLogin.setActionCommand("CMD_ENTER");

@@ -33,6 +33,8 @@ public class Acerca extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Acerca de");
+        setLocation(new java.awt.Point(500, 200));
 
         jLabel1.setText("SPIE");
 
