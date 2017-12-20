@@ -1,25 +1,26 @@
 
 package modelo;
-    
+
 public class Registro {
+
     private int id_registro;
     private int id_alumno;
     private int id_profesional;
-  
+
     private String tipo_actividad;
     private String apoderado;
     private String profesional;
 
-      private String fecha;
+    private String fecha;
     private String objetivo;
     private String resultado;
     private String acuerdo;
 
     public Registro() {
-        
+
     }
 
-    public Registro(int id_registro, int id_alumno, int id_profesional, String tipo_actividad, String apoderado,String profesional,String fecha,  String objetivo, String resultado, String acuerdo) {        
+    public Registro(int id_registro, int id_alumno, int id_profesional, String tipo_actividad, String apoderado, String profesional, String fecha, String objetivo, String resultado, String acuerdo) {
         this.id_registro = id_registro;
         this.id_alumno = id_alumno;
         this.id_profesional = id_profesional;
@@ -111,10 +112,4 @@ public class Registro {
     public void setProfesional(String profesional) {
         this.profesional = profesional;
     }
-
-
-   
-    
-    
-    
 }

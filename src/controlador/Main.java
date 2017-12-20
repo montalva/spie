@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -6,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -14,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.table.DefaultTableModel;
 
 public class Main implements ActionListener, WindowListener {
 
@@ -40,14 +37,12 @@ public class Main implements ActionListener, WindowListener {
         main.btnVerAlumno.addActionListener(this);
         main.mnuConf.addActionListener(this);
         main.btnBuscarRegistro.addActionListener(this);
-        
         bdm = new modelo.BDMAlumno();
         bdr = new modelo.RegistroDataBase();
         mbr = new modelo.BDMBuscarRegistro();
         if (this.tipo_usuario.equals("administrador")){
             System.out.println("administrador");
-            this.main.lblCuenta.setText("ADMINISTRACIÓN");
-                    
+            this.main.lblCuenta.setText("ADMINISTRACIÓN");       
         }else if (this.tipo_usuario.equals("profesional")){
             System.out.println("profesional");
             main.btnAgregarAlumno.setVisible(false);
@@ -60,7 +55,6 @@ public class Main implements ActionListener, WindowListener {
             main.btnAgregarRegistro.setVisible(false);
             this.main.lblCuenta.setText("DIRECTOR");
         }
-        
     }
 
     @Override
@@ -78,12 +72,10 @@ public class Main implements ActionListener, WindowListener {
                 break;
             case "CMD_ALUM":
                 vista.FormIngresarAlumno va = new vista.FormIngresarAlumno();
-                 {
-                    try {
-                        controlador.Alumno ca = new controlador.Alumno(va, bdm, main);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                try {
+                    controlador.Alumno ca = new controlador.Alumno(va, bdm, main);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 main.setEnabled(false);
                 break;
@@ -94,12 +86,10 @@ public class Main implements ActionListener, WindowListener {
                 break;
             case "CMD_REG":
                 vista.RegistroForm vr = new vista.RegistroForm();
-                 {
-                    try {
-                        controlador.Registro rc = new controlador.Registro(vr, bdr, bdm, main);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                try {
+                    controlador.Registro rc = new controlador.Registro(vr, bdr, bdm, main);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 main.setEnabled(false);
                 break;
@@ -120,39 +110,31 @@ public class Main implements ActionListener, WindowListener {
                     if (String.valueOf(password).equals("cual")) {
                         vista.frmConfiguracion vc = new vista.frmConfiguracion();
                         modelo.Configuracion mc = new modelo.Configuracion();
-                        main.setEnabled(false);    
+                        main.setEnabled(false);
                         try {
                             controlador.Configuracion cc = new controlador.Configuracion(vc, mc, main);
                         } catch (IOException ex) {
                             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
-               
-                 
                 break;
             case "CMD_BREG":
                 vista.BuscarRegistro vbr = new vista.BuscarRegistro();
-
                 try {
                     controlador.BuscarRegistro cbr = new controlador.BuscarRegistro(vbr, mbr, bdm, main);
                 } catch (IOException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 main.setEnabled(false);
                 break;
             case "CMD_VERALUMNO":
-
                 vista.BuscarAlumno vba = new vista.BuscarAlumno();
-
                 controlador.BuscarAlumno cba = new controlador.BuscarAlumno(vba, bdm, main);
-
                 main.setEnabled(false);
-
                 break;
         }
     }

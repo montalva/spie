@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -14,23 +10,20 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author monta
- */
-public class BuscarAlumno implements ActionListener, WindowListener{
+public class BuscarAlumno implements ActionListener, WindowListener {
+
     vista.BuscarAlumno buscaAlumno;
-    
     JFrame callWindow;
     modelo.BDMAlumno modBDM;
-    public BuscarAlumno(vista.BuscarAlumno buscaAlumno,modelo.BDMAlumno modBDM ,JFrame callWindow) {
-        this.buscaAlumno=buscaAlumno;
+
+    public BuscarAlumno(vista.BuscarAlumno buscaAlumno, modelo.BDMAlumno modBDM, JFrame callWindow) {
+        this.buscaAlumno = buscaAlumno;
         this.callWindow = callWindow;
-        this.modBDM=modBDM;
+        this.modBDM = modBDM;
         buscaAlumno.setVisible(true);
         buscaAlumno.addWindowListener(this);
         String[] curso = modBDM.bCurso();
-         if (curso != null ) {
+        if (curso != null) {
             for (int i = 0; i < curso.length; i++) {
                
                 buscaAlumno.cmbCurso.addItem(curso[i]);
@@ -43,12 +36,10 @@ public class BuscarAlumno implements ActionListener, WindowListener{
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         switch (cmd) {
-
             case "CMD_LISTAR":
                 System.out.println("CMD_LISTAR");
                 DefaultTableModel modeloTabla = (DefaultTableModel) buscaAlumno.tableListar.getModel();
                 Object[] fila = new Object[13];
-                //  ArrayList<modelo.Alumno> listAlumno;
                 String curso = buscaAlumno.cmbCurso.getSelectedItem().toString();
                 int id_curso = modBDM.buscarCurso(curso);
                 Iterator<modelo.Alumno> itr = modBDM.buscarAlumnoCurso(id_curso).iterator();
@@ -71,39 +62,7 @@ public class BuscarAlumno implements ActionListener, WindowListener{
                     modeloTabla.addRow(fila);
                 }
                 break;
-//                modelo.Alumno mod = modBDM.buscar(rut);
-//                if (mod != null) {
-//                    limpiar();
-//                    System.out.println(mod.getRut());
-//                    id_alumno = mod.getId_alumno();
-//                    vista.txtRut.setText(mod.getRut());
-//                    vista.txtNombre.setText(mod.getNombre());
-//                    vista.txtApellidoPaterno.setText(mod.getApellido_paterno());
-//                    vista.txtApellidoMaterno.setText(mod.getApellido_materno());
-//                    vista.txtFNacimiento.setText(mod.getFecha_nacimiento());
-//                   
-//                    vista.cmbGenero.getModel().setSelectedItem(mod.getGenero());
-//                    this.vista.cmbCurso.removeActionListener(this);
-//                    String curso = modBDM.buscarCurso(mod.getCurso());
-//                    if (curso != null) {
-//                        vista.cmbCurso.getModel().setSelectedItem(curso);
-//                    } else {
-//                        JOptionPane.showMessageDialog(null, "No se encontró genero", "Error", JOptionPane.ERROR_MESSAGE);
-//                        break;
-//                    }
-//                     this.vista.cmbCurso.addActionListener(this);
-//                    
-//                    vista.txtDireccion.setText(mod.getDireccion());
-//
-//                    vista.txtNombreApoderado.setText(mod.getNombre_apoderado());
-//                    vista.txtApellidoApoderado.setText(mod.getApellido_apoderado());
-//                    vista.txtTelefonoApoderado.setText(mod.getTelefono_apoderado());
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "No se encontró", "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-             
-    }            
+        }
     }
 
     @Override

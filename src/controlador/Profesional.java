@@ -26,7 +26,6 @@ public class Profesional implements ActionListener, WindowListener{
     }
      @Override
     public void actionPerformed(ActionEvent e) {
-       
         String cmd = e.getActionCommand();
         switch (cmd) {
             case "CMD_SAVE":
@@ -64,7 +63,6 @@ public class Profesional implements ActionListener, WindowListener{
                 System.out.println("Clear");
                 this.profesionalForm.txtRut.setText("");
                 this.profesionalForm.txtNombre.setText("");
-             
                 break;
             case "CMD_FIND":
                 System.out.println("Buscar");
@@ -79,7 +77,6 @@ public class Profesional implements ActionListener, WindowListener{
                 }
                 break;
         }
-        
     }
 
     @Override
@@ -114,7 +111,6 @@ public class Profesional implements ActionListener, WindowListener{
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
+
     }
-    
 }

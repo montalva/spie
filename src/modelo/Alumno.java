@@ -39,8 +39,7 @@ public class Alumno{
         this.rut = rut;
         this.nombre = nombre;
     }
-    
-
+   
     @Override
     public boolean equals(Object o){
         if(((Alumno)o).getRut().equals(this.getRut())){ 
@@ -49,7 +48,6 @@ public class Alumno{
             return false;
         }
     }
-   
 
     public String getNombre() {
         return nombre;
@@ -170,6 +168,4 @@ public class Alumno{
     public void setRegion(String region) {
         this.region = region;
     }
-   
-    
 }

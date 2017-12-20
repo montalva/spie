@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 
 import java.io.BufferedWriter;
@@ -11,10 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- *
- * @author usuario 2
- */
 public class Configuracion {
 
     ArchivoConf ac;
@@ -27,7 +19,6 @@ public class Configuracion {
         String ruta = "C:\\java\\ejemplo.txt";
         File archivo = new File(ruta);
         BufferedWriter bw;
-
         bw = new BufferedWriter(new FileWriter(archivo));
         bw.write(ac.getIp() + "," + ac.getPuerto() + "," + ac.getBd() + "," + ac.getUsuario() + "," + ac.getPassword());
         bw.close();
@@ -44,9 +35,7 @@ public class Configuracion {
 
         if (archivo.exists()) {
             Scanner lector = new Scanner(archivo);
-
             String str[] = lector.nextLine().split(",");
-
             return str;
         } else {
             ip = "localhost";
@@ -54,12 +43,10 @@ public class Configuracion {
             bd = "spie";
             user = "user";
             password = "password";
-
             crearDefault(ip, port, bd, user, password);
             String[] str2 = {ip, port, bd, user, password};
             return str2;
         }
-
     }
 
     public boolean crearDefault(String ip, String port, String bd, String user, String password) throws IOException {

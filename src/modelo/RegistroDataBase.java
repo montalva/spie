@@ -10,9 +10,10 @@ public class RegistroDataBase extends BD {
     public RegistroDataBase() {
 
     }
-public boolean agregarRegistro(Registro reg ){
-     try {            
-                     
+
+    public boolean agregarRegistro(Registro reg) {
+        try {
+
             PreparedStatement st = con.prepareStatement("insert into registro (id_alumno, id_profesional,fecha,"
                     + "tipo_actividad,objetivo,resultado,acuerdo) values (?,?,?,?,?,?,?)");
             st.setInt(1, reg.getId_alumno());
@@ -30,7 +31,6 @@ public boolean agregarRegistro(Registro reg ){
             System.out.println("Error insert " + ex.getMessage());
             return false;
         }
-    
 }
     public int buscarProfesional(String nombre) {
         try {
@@ -49,7 +49,6 @@ public boolean agregarRegistro(Registro reg ){
             System.err.println(ex.toString());
             return -1;
         }
-       
     }
 
     public String[] buscarProfesional() {
@@ -58,18 +57,16 @@ public boolean agregarRegistro(Registro reg ){
         try {
             PreparedStatement st = con.prepareStatement("select * from profesional");
             ResultSet rs = st.executeQuery();
-           
             rs.last();
             int t = rs.getRow();
             rs.beforeFirst();
-            profesional = new String[t+1]; 
+            profesional = new String[t + 1];
             profesional[0] = "Seleccione profesional";
             while (rs.next()) {
                 profesional[i++] = rs.getString("nombre_prof") + "-" + rs.getString("profesion");
             }
             st.close();
             return profesional;
-
         } catch (SQLException ex) {
             return null;
         }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -14,21 +10,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 
+public class Configuracion implements ActionListener, WindowListener {
 
-/**
- *
- * @author usuario 2
- */
-public class Configuracion implements ActionListener,WindowListener{
-JFrame callWindow;
-vista.frmConfiguracion vc;
-modelo.Configuracion mc;
-modelo.ArchivoConf ac;
-    public Configuracion( vista.frmConfiguracion vista,modelo.Configuracion mc,JFrame callWindow) throws IOException  {
+    JFrame callWindow;
+    vista.frmConfiguracion vc;
+    modelo.Configuracion mc;
+    modelo.ArchivoConf ac;
+
+    public Configuracion(vista.frmConfiguracion vista, modelo.Configuracion mc, JFrame callWindow) throws IOException {
         this.callWindow = callWindow;
         this.mc = mc;
         this.vc = vista;
-        
         this.vc.btnGuardar.addActionListener(this);
         String[] conf = mc.lee();
         this.vc.txtDireccion.setText(conf[0]);
@@ -43,7 +35,7 @@ modelo.ArchivoConf ac;
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-        switch(cmd){
+        switch (cmd) {
             case "CMD_GUARDAR":
                 ac = new modelo.ArchivoConf();
                 ac.setIp(vc.txtDireccion.getText());
@@ -51,7 +43,6 @@ modelo.ArchivoConf ac;
                 ac.setBd(vc.txtBD.getText());
                 ac.setUsuario(vc.txtUsuario.getText());
                 ac.setPassword(vc.txtPassword.getText());
-
                 try {
                     mc.guardar(ac);
                 } catch (IOException ex) {

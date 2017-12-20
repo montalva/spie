@@ -9,15 +9,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class Alumno implements ActionListener, WindowListener, KeyListener, MouseListener {
 
     vista.FormIngresarAlumno vista;
-   
     modelo.BDMAlumno modBDM;
     JFrame callWindow;
     String[] genero;
@@ -31,12 +28,9 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
-        
         this.vista.addWindowListener(this);
         this.vista.setVisible(true);
         this.callWindow = callWindow;
-   
-
         modBDM = bdm;
         if (cargaForm()) {
             this.vista.cmbCurso.addActionListener(this);
@@ -45,12 +39,9 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
             JOptionPane.showMessageDialog(null, "Error curso en BD",
                     "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public boolean cargaForm() {
-
-        
         vista.cmbGenero.addItem("Seleccione Genero");
         vista.cmbGenero.addItem("Femenino");
         vista.cmbGenero.addItem("Masculino");
@@ -62,20 +53,14 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 vista.cmbCurso.addItem(curso[i]);
             }
             for (int i = 0; i < region.length; i++) {
-
                 vista.cmbRegion.addItem(region[i]);
             }
-
             for (int i = 0; i < diagnostico.length; i++) {
-
                 vista.cmbDiagnostico.addItem(diagnostico[i]);
             }
             return true;
         }
-        
-       
         return false;
-
     }
 
     @Override
@@ -87,10 +72,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 System.out.println(this.vista.txtRut.getText());
                 modelo.Alumno ml = new modelo.Alumno();
                 if (vista.cmbGenero.getSelectedIndex() > 0 && vista.cmbCurso.getSelectedIndex() > 0) {
-                    
-                    
-                    ml.setGenero(vista.cmbGenero.getSelectedItem().toString());
-                    
+                    ml.setGenero(vista.cmbGenero.getSelectedItem().toString());                  
                     int id_curso = modBDM.buscarCurso(vista.cmbCurso.getSelectedItem().toString());
                     if (id_curso > 0) {
                         ml.setCurso(id_curso);
@@ -109,28 +91,23 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 ml.setNombre_apoderado(vista.txtNombreApoderado.getText());
                 ml.setApellido_apoderado(vista.txtApellidoApoderado.getText());
                 ml.setTelefono_apoderado(vista.txtTelefonoApoderado.getText());
-                
                 if (!isTexto()) {
                     JOptionPane.showMessageDialog(null, "NO se aceptan numeros en los campos" + " "
                             + vista.txtNombre.getText(), "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
                 if (modBDM.agregar(ml) > 0) {
-
                     JOptionPane.showMessageDialog(null, "Alumno agregado!", "Aceptar", JOptionPane.OK_OPTION);
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al agregar alumno" + " "
                             + vista.txtRut.getText(), "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
                 }
-
                 break;
             case "CMD_MOD":
                 System.out.println("Modificar");
                 modelo.Alumno modAl = new modelo.Alumno();
                 if (vista.cmbGenero.getSelectedIndex() > 0 && vista.cmbCurso.getSelectedIndex() > 0) {
-                    
                     modAl.setGenero(vista.cmbGenero.getModel().getSelectedItem().toString());
-                    
                     int id_curso = modBDM.buscarCurso(vista.cmbCurso.getSelectedItem().toString());
                     if (id_curso > 0) {
                         modAl.setCurso(id_curso);
@@ -146,11 +123,9 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 modAl.setApellido_materno(vista.txtApellidoMaterno.getText());
                 modAl.setFecha_nacimiento(vista.txtFNacimiento.getText());
                 modAl.setDireccion(vista.txtDireccion.getText());
-
                 modAl.setNombre_apoderado(vista.txtNombreApoderado.getText());
                 modAl.setApellido_apoderado(vista.txtApellidoApoderado.getText());
                 modAl.setTelefono_apoderado(vista.txtTelefonoApoderado.getText());
-
                 if (!isTexto()) {
                     JOptionPane.showMessageDialog(null, "NO se aceptan numeros en los campos" + " "
                             + vista.txtNombre.getText(), "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
@@ -183,11 +158,9 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 controlador.BuscarAlumno cba = new controlador.BuscarAlumno(vba,modBDM, vista);
                 vista.setEnabled(false);
                 break;
-           
             case "CMD_REGION":
                 System.out.println("region cb");
                 vista.cmbComuna.removeAllItems();
-               
                 String region = vista.cmbRegion.getSelectedItem().toString();
                 String [] comuna = modBDM.bComuna(region);
                 for (int i = 0; i < comuna.length; i++) {
@@ -198,7 +171,6 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
     }
 
     public void limpiar() {
-
         this.vista.txtRut.setText("");
         this.vista.txtNombre.setText("");
         this.vista.txtApellidoPaterno.setText("");
@@ -209,13 +181,9 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.cmbCurso.setSelectedIndex(0);
         this.vista.cmbCurso.addActionListener(this);
         this.vista.txtDireccion.setText("");
-
         this.vista.txtNombreApoderado.setText("");
         this.vista.txtApellidoApoderado.setText("");
         this.vista.txtTelefonoApoderado.setText("");
-
-      
-
     }
 
     @Override
@@ -268,14 +236,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
-//        int row = vista.tableListar.getSelectedRow();
-//        System.out.println(vista.tableListar.getModel().getValueAt(row, 0) + e.paramString());
-//        String rut = (String) vista.tableListar.getModel().getValueAt(row, 0);
-//        String nombre = (String) vista.tableListar.getModel().getValueAt(row, 1);
-//        String apellido_paterno = (String) vista.tableListar.getModel().getValueAt(row, 2);
-//        vista.txtRut.setText(rut);
-//        vista.txtNombre.setText(nombre);
-//        vista.txtApellidoPaterno.setText(apellido_paterno);
+
     }
 
     @Override

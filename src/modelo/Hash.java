@@ -1,10 +1,6 @@
 
 package modelo;
 
-/**
- *
- * @author monta
- */
 public class Hash {
      /* Retorna un hash a partir de un tipo y un texto */
     public static String getHash(String txt, String hashType) {

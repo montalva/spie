@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -15,10 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-/**
- *
- * @author usuario 2
- */
 public class Login1 implements ActionListener {
 
     vista.Login login;
@@ -27,17 +19,14 @@ public class Login1 implements ActionListener {
 
     public Login1(vista.Login vista) {
         this.login = vista;
-
         this.login.btnLogin.addActionListener(this);
         this.login.jmnuconf.addActionListener(this);
-        
         bdmlogin = new modelo.BDMLogin();
         try {
             modelo.BD.conectar();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //System.out.println(Hash.sha1("profesor"));
     }
     
     @Override
@@ -55,7 +44,6 @@ public class Login1 implements ActionListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró usuario", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
                 break;
             case "CMD_CONF":
                 JPanel panel = new JPanel();
@@ -70,7 +58,6 @@ public class Login1 implements ActionListener {
                 if (option == 0) // pressing OK button
                 {
                     char[] password = pass.getPassword();
-                   // System.out.println("Your password is: " + new String(password));
                     if (String.valueOf(password).equals("cual")) {
                         vista.frmConfiguracion vc = new vista.frmConfiguracion();
                         modelo.Configuracion mc = new modelo.Configuracion();
@@ -82,13 +69,9 @@ public class Login1 implements ActionListener {
                         }
                     }else{
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    
-                }
-
-                 
+                    }   
+                }   
                 break;
         }
     }
-
 }
