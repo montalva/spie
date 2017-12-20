@@ -181,6 +181,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 System.out.println("Buscar");
                  vista.BuscarAlumno vba= new vista.BuscarAlumno();
                 controlador.BuscarAlumno cba = new controlador.BuscarAlumno(vba,modBDM, vista);
+                vista.setEnabled(false);
                 break;
            
             case "CMD_REGION":

@@ -16,9 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.table.DefaultTableModel;
 
-public class Main implements ActionListener, WindowListener{
+public class Main implements ActionListener, WindowListener {
+
     vista.FrmMain main;
-JFrame callWindow;
+    JFrame callWindow;
     modelo.BDProfesional bdp;
     modelo.BDMAlumno bdm;
     modelo.RegistroDataBase bdr;
