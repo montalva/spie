@@ -137,7 +137,7 @@ public class BDMAlumno extends BD {
             st.setString(10, u.getNombre_apoderado());
             st.setString(11, u.getApellido_apoderado());
             st.setString(12, u.getTelefono_apoderado());
-            st.setString(13, u.getDiagnostico());
+            st.setInt(13, u.getID_Diagnostico());
             System.out.println(st);
 
             int res = st.executeUpdate();
@@ -175,7 +175,7 @@ public class BDMAlumno extends BD {
                 a.setNombre_apoderado(rs.getString("nombre_apoderado"));
                 a.setApellido_apoderado(rs.getString("apellido_apoderado"));
                 a.setTelefono_apoderado(rs.getString("telefono_apoderado"));
-                a.setDiagnostico(rs.getString("diagnostico"));
+                a.setID_Diagnostico(rs.getInt("id_diagnostico"));
 
                 st.close();
                 return a;
@@ -207,8 +207,7 @@ public class BDMAlumno extends BD {
   public ArrayList<Alumno> buscarAlumnoCurso(int curso) {
 
         try {
-            PreparedStatement st = con.prepareStatement("SELECT rut,nombre,apellido_paterno,curso from alumno "
-                    + "JOIN curso ON alumno.id_curso = curso.id_curso where alumno.id_curso=?");
+            PreparedStatement st = con.prepareStatement("SELECT * from alumno JOIN curso ON alumno.id_curso = curso.id_curso where alumno.id_curso=?");
             st.setInt(1,curso );
             System.out.println(st);
             ResultSet rs = st.executeQuery();
@@ -218,7 +217,18 @@ public class BDMAlumno extends BD {
                 a.setRut(rs.getString("rut"));
                 a.setNombre(rs.getString("nombre"));
                 a.setApellido_paterno(rs.getString("apellido_paterno"));
-                a.setDireccion(rs.getString("curso"));
+                a.setApellido_materno(rs.getString("apellido_materno"));
+                a.setFecha_nacimiento(rs.getString("fecha_nacto"));
+                a.setGenero(rs.getString("genero"));
+                a.setDireccion(rs.getString("direccion"));
+                a.setNombre_apoderado(rs.getString("nombre_apoderado"));
+                a.setApellido_apoderado(rs.getString("apellido_apoderado"));
+                a.setTelefono_apoderado(rs.getString("telefono_apoderado"));
+                a.setID_Diagnostico(rs.getInt("id_diagnostico"));
+                                      
+//                 comuna
+//                region      
+//                      
                 resultado.add(a);                
             }
             rs.close();
@@ -254,7 +264,7 @@ public class BDMAlumno extends BD {
             st.setString(10, u.getNombre_apoderado());
             st.setString(11, u.getApellido_apoderado());
             st.setString(12, u.getTelefono_apoderado());
-            st.setString(13, u.getDiagnostico());
+            st.setInt(13, u.getID_Diagnostico());
             st.setInt(14, id_alumno);
             System.out.println(st);
 

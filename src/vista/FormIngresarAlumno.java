@@ -56,9 +56,6 @@ public class FormIngresarAlumno extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         lblDiagnostico = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableListar = new javax.swing.JTable();
@@ -122,10 +119,6 @@ public class FormIngresarAlumno extends javax.swing.JFrame {
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setActionCommand("CMD_DEL");
-
-        jLabel8.setText("Buscar");
-
-        jLabel15.setText("jLabel15");
 
         lblDiagnostico.setText("Diagnóstico");
 
@@ -215,40 +208,19 @@ public class FormIngresarAlumno extends javax.swing.JFrame {
                             .addComponent(txtTelefonoApoderado, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(136, Short.MAX_VALUE))
-                    .addComponent(jLabel14)))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, 0)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBuscar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel15))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBuscar)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel15)))
+                .addGap(19, 19, 19)
+                .addComponent(btnBuscar)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -388,14 +360,12 @@ public class FormIngresarAlumno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDiagnostico;
@@ -404,7 +374,6 @@ public class FormIngresarAlumno extends javax.swing.JFrame {
     public javax.swing.JTextField txtApellidoApoderado;
     public javax.swing.JTextField txtApellidoMaterno;
     public javax.swing.JTextField txtApellidoPaterno;
-    public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtFNacimiento;
     public javax.swing.JTextField txtNombre;

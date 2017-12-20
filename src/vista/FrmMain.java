@@ -37,7 +37,7 @@ public class FrmMain extends javax.swing.JFrame {
         mnuAcerca = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(300, 100));
 
         btnAgregarAlumno.setText("Agregar Alumno");

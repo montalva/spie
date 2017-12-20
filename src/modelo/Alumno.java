@@ -11,10 +11,11 @@ public class Alumno{
     private String genero;
     private String direccion;
     private String comuna;
+    private String region;
     private String nombre_apoderado;
     private String apellido_apoderado;
     private String telefono_apoderado;
-    private String diagnostico;
+    private int id_diagnostico;
     private int id_alumno;
     
     public Alumno() {
@@ -27,10 +28,11 @@ public class Alumno{
         this.genero= null;
         this.direccion= null;
         this.comuna= null;
+        this.region=null;
         this.nombre_apoderado= null;
         this.apellido_apoderado= null;
         this.telefono_apoderado= null;
-        this.diagnostico= null;
+        this.id_diagnostico= 0;
         this.id_alumno= 0;
     }
     public Alumno(String rut, String nombre) {
@@ -145,12 +147,12 @@ public class Alumno{
         this.telefono_apoderado = telefono_apoderado;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public int getID_Diagnostico() {
+        return id_diagnostico;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public void setID_Diagnostico(int id_diagnostico) {
+        this.id_diagnostico = id_diagnostico;
     }
 
     public int getId_alumno() {
@@ -159,6 +161,14 @@ public class Alumno{
 
     public void setId_alumno(int id_alumno) {
         this.id_alumno = id_alumno;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
    
     

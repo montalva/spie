@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class Alumno implements ActionListener, WindowListener, KeyListener, MouseListener {
 
     vista.FormIngresarAlumno vista;
+   
     modelo.BDMAlumno modBDM;
     JFrame callWindow;
     String[] genero;
@@ -34,8 +35,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
         this.vista.addWindowListener(this);
         this.vista.setVisible(true);
         this.callWindow = callWindow;
-        this.vista.txtBuscar.addKeyListener(this);
-        this.vista.btnBuscar.setEnabled(false);
+   
 
         modBDM = bdm;
         if (cargaForm()) {
@@ -179,38 +179,8 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
                 break;
             case "CMD_FIND":
                 System.out.println("Buscar");
-                String rut = vista.txtBuscar.getText();
-                modelo.Alumno mod = modBDM.buscar(rut);
-                if (mod != null) {
-                    limpiar();
-                    System.out.println(mod.getRut());
-                    id_alumno = mod.getId_alumno();
-                    vista.txtRut.setText(mod.getRut());
-                    vista.txtNombre.setText(mod.getNombre());
-                    vista.txtApellidoPaterno.setText(mod.getApellido_paterno());
-                    vista.txtApellidoMaterno.setText(mod.getApellido_materno());
-                    vista.txtFNacimiento.setText(mod.getFecha_nacimiento());
-                   
-                    vista.cmbGenero.getModel().setSelectedItem(mod.getGenero());
-                    this.vista.cmbCurso.removeActionListener(this);
-                    String curso = modBDM.buscarCurso(mod.getCurso());
-                    if (curso != null) {
-                        vista.cmbCurso.getModel().setSelectedItem(curso);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se encontró genero", "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    }
-                     this.vista.cmbCurso.addActionListener(this);
-                    
-                    vista.txtDireccion.setText(mod.getDireccion());
-
-                    vista.txtNombreApoderado.setText(mod.getNombre_apoderado());
-                    vista.txtApellidoApoderado.setText(mod.getApellido_apoderado());
-                    vista.txtTelefonoApoderado.setText(mod.getTelefono_apoderado());
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                 vista.BuscarAlumno vba= new vista.BuscarAlumno();
+                controlador.BuscarAlumno cba = new controlador.BuscarAlumno(vba,modBDM, vista);
                 break;
             case "CMD_LISTAR":
                 System.out.println("CMD_LISTAR");
@@ -310,12 +280,7 @@ public class Alumno implements ActionListener, WindowListener, KeyListener, Mous
 
     @Override
     public void keyReleased(KeyEvent e) {
-        String cmd = e.paramString();
-        if (vista.txtBuscar.getText().equals("")) {
-            vista.btnBuscar.setEnabled(false);
-        } else {
-            vista.btnBuscar.setEnabled(true);
-        }
+      
     }
 
     @Override
