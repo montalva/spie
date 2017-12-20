@@ -24,7 +24,7 @@ public class Profesional implements ActionListener, WindowListener{
         this.windowCall = windowCall;
         this.profesionalForm.setVisible(true);
     }
-     @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         switch (cmd) {
